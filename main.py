@@ -40,6 +40,7 @@ SEND_FRAME_NUM = 3
 # default = np.zeros(FRAME_W,FRAME_H,3)
 flag_test = True
 
+# サーバー(Unityにデータ送信)
 def send_image(img):
     print(img.shape)
     # img = img.resize((100,180))
@@ -111,7 +112,7 @@ while(1):
                 # 何フレーム目を送信するか
                 # send_image(detected_frame[frame_len//6])
                 frame_len = min(frame_len-1,SEND_FRAME_NUM)
-                # send_image(detected_frame[frame_len])
+                send_image(detected_frame[frame_len])
                 detected_frame = []
             # pass
             #print("検出物体が小さい")
@@ -127,7 +128,7 @@ while(1):
             # 何フレーム目を送信するか
             # send_image(detected_frame[frame_len//6])
             frame_len = min(frame_len-1,SEND_FRAME_NUM)
-            # send_image(detected_frame[frame_len])
+            send_image(detected_frame[frame_len])
             detected_frame = []
 
     cv2.imshow('frame',fgmask)
